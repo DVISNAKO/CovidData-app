@@ -5,6 +5,7 @@ interface PeriodFilterProps {
   endDate: string;
   handleStartDateChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleEndDateChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  applyDateFilter: () => void; // Add this line
 }
 
 const PeriodFilter: React.FC<PeriodFilterProps> = ({
@@ -12,25 +13,31 @@ const PeriodFilter: React.FC<PeriodFilterProps> = ({
   endDate,
   handleStartDateChange,
   handleEndDateChange,
+  applyDateFilter,
 }) => {
   return (
-    <div className="flex gap-3 items-center mb-2 mr-2">
-      <label htmlFor="startDate">Период от:</label>
+    <div className="flex gap-2 my-2">
       <input
-        className="form-control w-[140px]"
         type="date"
-        id="startDate"
         value={startDate}
         onChange={handleStartDateChange}
-      />
-      <label htmlFor="endDate">До:</label>
-      <input
         className="form-control w-[140px]"
+        placeholder="Start Date"
+      />
+      <input
         type="date"
-        id="endDate"
         value={endDate}
         onChange={handleEndDateChange}
+        className="form-control w-[140px]"
+        placeholder="End Date"
       />
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={applyDateFilter}
+      >
+        Применить
+      </button>
     </div>
   );
 };

@@ -119,11 +119,11 @@ const Schedule: React.FC<DataFilterProps> = ({
           endDate={endDate}
           handleStartDateChange={handleStartDateChange}
           handleEndDateChange={handleEndDateChange}
-          applyDateFilter={applyDateFilter}
+          applyDateFilter={applyDateFilter} // Ensure this prop is passed
         />
         <button
           type="button"
-          className="btn btn-outline-secondary w-42 mb-2 mx-2"
+          className="btn btn-outline-secondary w-42 mx-2"
           onClick={resetAllFilters}
         >
           Сбросить фильтры
