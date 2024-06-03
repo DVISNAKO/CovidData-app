@@ -32,14 +32,10 @@ export default function Home() {
 
         // Calculate min and max dates
         const dates = records.map((item: CovidData) => new Date(item.dateRep.split('/').reverse().join('-')));
-        const minDate = new Date(Math.min.apply(null, dates));
-        const maxDate = new Date(Math.max.apply(null, dates));
-        
-        // Format dates as yyyy-mm-dd for input fields
-        const formatDate = (date: Date) => date.toISOString().split('T')[0];
-
-        setStartDate(formatDate(minDate));
-        setEndDate(formatDate(maxDate));
+        const minDate = new Date(Math.min(...dates));
+        const maxDate = new Date(Math.max(...dates));
+        setStartDate(minDate.toISOString().split('T')[0]);
+        setEndDate(maxDate.toISOString().split('T')[0]);
       } catch (error) {
         console.error("Ошибка при получении данных:", error);
       }
@@ -86,18 +82,10 @@ export default function Home() {
 
   const resetFilters = () => {
     setSearchTerm("");
+    setStartDate("");
+    setEndDate("");
     setCurrentPage(1);
     setFilteredData(data);
-
-    // Reset to the initial date range
-    const dates = data.map((item: CovidData) => new Date(item.dateRep.split('/').reverse().join('-')));
-    const minDate = new Date(Math.min.apply(null, dates));
-    const maxDate = new Date(Math.max.apply(null, dates));
-
-    const formatDate = (date: Date) => date.toISOString().split('T')[0];
-    setStartDate(formatDate(minDate));
-    setEndDate(formatDate(maxDate));
-
     const uniqueCountries = [...new Set(data.map((item: CovidData) => item.countriesAndTerritories))];
     setCountriesList(uniqueCountries);
   };
