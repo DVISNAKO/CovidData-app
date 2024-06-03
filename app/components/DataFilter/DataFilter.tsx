@@ -35,29 +35,30 @@ const DataFilter: React.FC<DataFilterProps> = ({
         />
       </div>
       <select
-        className="form-select form-select-sm w-[180px]"
-        aria-label="Small select example"
         value={selectedColumn}
         onChange={handleColumnChange}
+        className="form-select form-select-sm w-[180px]"
+        aria-label="Small select example"
       >
         <option value="">Фильтр по полю</option>
         <option value="cases">Кол. Случаев</option>
         <option value="deaths">Кол. Смертей</option>
         <option value="popData2019">Кол. случаев всего</option>
-        <option value="casesPerThousand">Кол. случаев на 1000 жителей</option>
-        <option value="deathsPerThousand">Кол. смертей на 1000 жителей</option>
       </select>
+
       <input
-        className="form-control w-[140px]"
-        placeholder="значение от"
         value={valueFrom}
         onChange={handleValueFromChange}
+        type="number"
+        className="form-control w-[140px]"
+        placeholder="значение от"
       />
       <input
-        className="form-control w-[140px]"
-        placeholder="значение до"
         value={valueTo}
         onChange={handleValueToChange}
+        type="number"
+        className="form-control w-[140px]"
+        placeholder="значение до"
       />
     </div>
   );

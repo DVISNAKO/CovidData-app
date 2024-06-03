@@ -66,7 +66,9 @@ const Schedule: React.FC<DataFilterProps> = ({
     let matchesValueRange = true;
     if (selectedColumn && valueFrom && valueTo) {
       const columnValue = item[selectedColumn as keyof CovidData];
-      matchesValueRange = columnValue >= parseFloat(valueFrom) && columnValue <= parseFloat(valueTo);
+      if (typeof columnValue === "number") {
+        matchesValueRange = columnValue >= parseFloat(valueFrom) && columnValue <= parseFloat(valueTo);
+      }
     }
 
     return (matchesCountry || matchesCases || matchesDeaths) && matchesValueRange;
@@ -96,7 +98,7 @@ const Schedule: React.FC<DataFilterProps> = ({
   };
 
   return (
-    <div className="flex flex-col w-[900px] border-2 bg-slate-300">
+    <div className="flex flex-col w-[900px] border-2">
       <div className="flex justify-center items-center">
         <div className="input-group mb-1">
           <DataFilter
